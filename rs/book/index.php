@@ -1,3 +1,28 @@
+<?php
+$successMsg = "";
+$errorMsg = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars(trim($_POST['name']));
+    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+    $message = htmlspecialchars(trim($_POST['message']));
+
+    if ($name && filter_var($email, FILTER_VALIDATE_EMAIL) && $message) {
+        $to = "markleontaridis@gmail.com"; // Replace with your real email
+        $subject = "Contact Form Message from $name";
+        $body = "Name: $name\nEmail: $email\n\nMessage:\n$message";
+        $headers = "From: contact@soundspace.com";
+
+        if (mail($to, $subject, $body, $headers)) {
+            $successMsg = "Thanks, $name! Your message has been sent. We'll get back to you soon.";
+        } else {
+            $errorMsg = "Oops! Something went wrong. Please try again later.";
+        }
+    } else {
+        $errorMsg = "Please fill out all fields correctly.";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,33 +82,45 @@
             font-weight: bold;
             margin-top: 1rem;
             transition: all 0.3s;
+            cursor: pointer;
+            border: none;
         }
         .cta-button:hover {
             transform: scale(1.05);
             background: #3333ff;
         }
-        .services {
+        .contact {
             padding: 4rem 2rem;
             text-align: center;
         }
-        .service-cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
+        .contact form {
             margin-top: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .card {
-            background-color: #222;
-            padding: 2rem;
-            border-radius: 10px;
-            width: 300px;
+        .contact input, .contact textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border: none;
         }
         footer {
             background-color: #111;
             text-align: center;
             padding: 2rem;
             margin-top: 2rem;
+        }
+        .message {
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        .success {
+            color: #00ff99;
+        }
+        .error {
+            color: #ff5555;
         }
     </style>
 </head>
@@ -94,38 +131,37 @@
     </header>
     <nav>
         <a href="#services">Services</a>
-        <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
-        <a href="/book">Book Now</a>
     </nav>
+
     <div class="hero">
         <div class="hero-content">
-            <h1>Premium Recording Studio</h1>
-            <p>Professional equipment and acoustics for artists at all levels</p>
-            <a href="/book" class="cta-button">Book Your Session</a>
+            <h1>Record. Produce. Create.</h1>
+            <p>Everything you need to bring your sound to life</p>
+            <a href="#contact" class="cta-button">Contact Us</a>
         </div>
     </div>
-    <section class="services" id="services">
-        <h2>Our Services</h2>
-        <div class="service-cards">
-            <div class="card">
-                <h3>Music Recording</h3>
-                <p>Professional recording studio with top-tier equipment and experienced engineers.</p>
-            </div>
-            <div class="card">
-                <h3>Vocal Booth</h3>
-                <p>Isolated space for crisp, clear vocal recordings with minimal interference.</p>
-            </div>
-            <div class="card">
-                <h3>Video Production</h3>
-                <p>Full video recording studio with green screen and lighting options.</p>
-            </div>
-        </div>
-    </section>
+
+    <div class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <p>Got questions? Send us a message below:</p>
+        <form method="POST" action="#contact">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+            <button type="submit" class="cta-button">Send Message</button>
+
+            <?php if ($successMsg): ?>
+                <div class="message success"><?= $successMsg ?></div>
+            <?php elseif ($errorMsg): ?>
+                <div class="message error"><?= $errorMsg ?></div>
+            <?php endif; ?>
+        </form>
+    </div>
+
     <footer>
         <p>&copy; 2023 SoundSpace Studios. All rights reserved.</p>
         <p>123 Studio Lane, Music City | (555) 123-4567 | info@soundspace.com</p>
     </footer>
 </body>
 </html>
-
