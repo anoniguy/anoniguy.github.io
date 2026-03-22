@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="mtleont">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="icon" href="icon0.png" type="image/png">
+    <title>mtleont</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <img src="pfp.jpg" alt="mtleont">
+                <span>mtleont</span>
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">mtleont</h1>
+            <p class="hero-tagline">Welcome to my website</p>
+            <div class="hero-cta">
+                <a href="blog.html" class="btn btn-primary" data-tooltip="Read my blog posts">Read Blog</a>
+                <a href="projects.html" class="btn btn-secondary" data-tooltip="View my projects">View Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Blog Posts -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Recent Posts</h2>
+                <p>Latest from the blog</p>
+            </div>
+            
+            <div class="blog-grid" id="blog-posts">
+                <div class="blog-placeholder">
+                    <p>Loading posts...</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="blog.html" class="btn btn-secondary">View All Posts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">&copy; 2026 mtleont <img src="weblogo.png" alt="logo" style="height: 40px; vertical-align: middle; margin-left: 8px;"></p>
+                <div class="footer-links">
+                    <a href="https://github.com/mtleont" class="footer-link" target="_blank" data-tooltip="GitHub">GitHub</a>
+                    <a href="https://twitch.tv/ddeathtrain12" class="footer-link" target="_blank" data-tooltip="Twitch">Twitch</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    
+    <!-- Popper.js (required for Tippy) -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <!-- Tippy.js -->
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    
+    <!-- Main Script -->
+    <script src="assets/main.js"></script>
+</body>
+</html>
