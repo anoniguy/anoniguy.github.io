@@ -272,7 +272,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         let currentType = 'url';
         let qrCanvas = null;
@@ -346,23 +346,20 @@
             const qrContainer = document.getElementById('qrcode');
             qrContainer.innerHTML = '';
 
-            QRCode.toCanvas(content, {
+            new QRCode(qrContainer, {
+                text: content,
                 width: 250,
+                height: 250,
                 margin: 2,
-                color: {
-                    dark: '#000000',
-                    light: '#ffffff'
-                }
-            }, function(error, canvas) {
-                if (error) {
-                    console.error(error);
-                    alert('Error generating QR code');
-                    return;
-                }
-                qrCanvas = canvas;
-                qrContainer.appendChild(canvas);
-                document.getElementById('result').classList.add('show');
+                colorDark: '#000000',
+                colorLight: '#ffffff'
             });
+
+            qrCanvas = qrContainer.querySelector('canvas');
+            if (!qrCanvas) {
+                qrCanvas = qrContainer.querySelector('img');
+            }
+            document.getElementById('result').classList.add('show');
         }
 
         function downloadQR() {
