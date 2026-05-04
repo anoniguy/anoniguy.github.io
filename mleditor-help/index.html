@@ -165,23 +165,13 @@
 <script>
 window.onload = function () {
     const hash = window.location.hash.replace("#", "");
-
-    // If no hash, show everything
     if (!hash) return;
-
     const sections = document.querySelectorAll(".section");
-
     sections.forEach(section => {
         const title = section.querySelector("h2");
-
         if (!title) return;
-
         const id = title.innerText.toLowerCase();
-
-        // hide everything first
         section.style.display = "none";
-
-        // show only matching section
         if (id === hash.toLowerCase()) {
             section.style.display = "block";
         }
